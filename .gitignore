@@ -1,0 +1,8 @@
+.utmp/
+12364_BackUpThisFolder_ButDontShipItWithYourGame/
+21_BackUpThisFolder_ButDontShipItWithYourGame/
+Library/
+Temp/
+Logs/
+obj/
+.vs/
