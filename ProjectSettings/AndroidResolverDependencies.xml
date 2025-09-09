@@ -1,17 +1,33 @@
 <dependencies>
   <packages>
+    <package>androidx.constraintlayout:constraintlayout:2.1.4</package>
+    <package>androidx.lifecycle:lifecycle-process:2.6.2</package>
     <package>androidx.recyclerview:recyclerview:1.2.1</package>
     <package>com.android.installreferrer:installreferrer:2.1</package>
+    <package>com.android.support:customtabs:28.+</package>
+    <package>com.android.support:recyclerview-v7:28.+</package>
+    <package>com.applovin.mediation:bidmachine-adapter:3.4.0.0</package>
     <package>com.applovin.mediation:bytedance-adapter:7.5.0.4.0</package>
-    <package>com.applovin.mediation:google-adapter:[24.5.0.0]</package>
+    <package>com.applovin.mediation:facebook-adapter:[6.20.0.0]</package>
+    <package>com.applovin.mediation:fyber-adapter:8.3.8.0</package>
+    <package>com.applovin.mediation:google-adapter:[24.5.0.1]</package>
     <package>com.applovin.mediation:google-ad-manager-adapter:[24.5.0.0]</package>
+    <package>com.applovin.mediation:inmobi-adapter:10.8.7.0</package>
+    <package>com.applovin.mediation:ironsource-adapter:8.11.1.0.0</package>
     <package>com.applovin.mediation:mintegral-adapter:16.9.91.0</package>
+    <package>com.applovin.mediation:mobilefuse-adapter:1.9.3.0</package>
+    <package>com.applovin.mediation:moloco-adapter:4.0.0.0</package>
+    <package>com.applovin.mediation:smaato-adapter:22.7.2.3</package>
     <package>com.applovin.mediation:unityads-adapter:4.16.1.0</package>
     <package>com.applovin.mediation:vungle-adapter:7.5.1.0</package>
+    <package>com.applovin.mediation:yandex-adapter:7.15.1.0</package>
     <package>com.applovin:applovin-sdk:13.4.0</package>
     <package>com.appsflyer:af-android-sdk:6.5.2</package>
     <package>com.appsflyer:unity-wrapper:6.5.2</package>
+    <package>com.google.android.gms:play-services-ads:24.5.0</package>
     <package>com.google.android.gms:play-services-base:18.7.2</package>
+    <package>com.google.android.ump:user-messaging-platform:2.1.0</package>
+    <package>com.google.android.ump:user-messaging-platform:3.2.0</package>
     <package>com.google.firebase:firebase-analytics:23.0.0</package>
     <package>com.google.firebase:firebase-analytics-unity:13.1.0</package>
     <package>com.google.firebase:firebase-app-unity:13.1.0</package>
@@ -20,6 +36,7 @@
     <package>com.google.firebase:firebase-config-unity:13.1.0</package>
     <package>com.google.firebase:firebase-crashlytics-ndk:20.0.0</package>
     <package>com.google.firebase:firebase-crashlytics-unity:13.1.0</package>
+    <package>com.squareup.picasso:picasso:2.71828</package>
   </packages>
   <files>
     <file>Assets/GeneratedLocalRepo/Firebase/m2repository/com/google/firebase/firebase-analytics-unity/13.1.0/firebase-analytics-unity-13.1.0.aar</file>
@@ -33,7 +50,7 @@
   </files>
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
-    <setting name="bundleId" value="com.UnityTechnologies.com.unity.template.urpblank" />
+    <setting name="bundleId" value="com.magic.store" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="True" />

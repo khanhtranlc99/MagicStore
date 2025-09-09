@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACTk.Editor", "ACTk.Editor.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibrations.Editor", "MoreMountains.NiceVibrations.Editor.csproj", "{FC5DBD5F-7BA8-01EB-DAC5-77B57C5E320B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMobileAds.Editor", "GoogleMobileAds.Editor.csproj", "{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACTk.Examples.Runtime", "ACTk.Examples.Runtime.csproj", "{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxSdk.Scripts.IntegrationManager.Editor", "MaxSdk.Scripts.IntegrationManager.Editor.csproj", "{13A43767-B1B6-F7A0-8648-42E83876A4F9}"
@@ -115,6 +117,10 @@ Global
 		{FC5DBD5F-7BA8-01EB-DAC5-77B57C5E320B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC5DBD5F-7BA8-01EB-DAC5-77B57C5E320B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC5DBD5F-7BA8-01EB-DAC5-77B57C5E320B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU

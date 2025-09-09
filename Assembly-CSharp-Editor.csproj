@@ -107,12 +107,21 @@
     <None Include="Assets\MaxSdk\Mediation\Mintegral\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\AppLovin\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\Google\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\Smaato\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\Yandex\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\ByteDance\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\BidMachine\Editor\Dependencies.xml" />
     <None Include="Assets\Demigiant\Editor\DOTweenEditor.dll" />
+    <None Include="Assets\MaxSdk\Mediation\IronSource\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\UnityAds\Editor\Dependencies.xml" />
     <None Include="Assets\Demigiant\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\MaxSdk\Mediation\InMobi\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\Vungle\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\MobileFuse\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\Fyber\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\Facebook\Editor\Dependencies.xml" />
     <None Include="Assets\MaxSdk\Mediation\GoogleAdManager\Editor\Dependencies.xml" />
+    <None Include="Assets\MaxSdk\Mediation\Moloco\Editor\Dependencies.xml" />
     <None Include="Assets\Base\Plugins\Sirenix\Odin Inspector\Assets\Editor\Bootstrap License.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -616,12 +625,20 @@
       <HintPath>Library\PackageCache\com.google.firebase.analytics@b00c59f9e7c1\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Common">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections@56bff8827a7e\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.Serialization">
@@ -668,6 +685,10 @@
       <HintPath>Library\PackageCache\com.google.firebase.app@5dd41faa4871\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Core">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="log4netPlastic">
       <HintPath>Library\PackageCache\com.unity.collab-proxy@c854d1f7d97f\Lib\Editor\log4netPlastic.dll</HintPath>
       <Private>False</Private>
@@ -692,12 +713,20 @@
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Ump.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Demigiant\Editor\DOTweenEditor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Google.PackageManagerResolver">
       <HintPath>Library\PackageCache\com.google.external-dependency-manager@f377d09ccd8e\ExternalDependencyManager\Editor\1.2.186\Google.PackageManagerResolver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Google.VersionHandlerImpl">
@@ -714,6 +743,10 @@
     </Reference>
     <Reference Include="Google.JarResolver">
       <HintPath>Library\PackageCache\com.google.external-dependency-manager@f377d09ccd8e\ExternalDependencyManager\Editor\1.2.186\Google.JarResolver.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ACTkSharpZipLib">
@@ -1611,18 +1644,17 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj" />
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj" />
     <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
     <ProjectReference Include="ACTk.Examples.Runtime.csproj" />
     <ProjectReference Include="ACTk.Runtime.csproj" />
     <ProjectReference Include="Coffee.UIParticle.csproj" />
     <ProjectReference Include="ACTk.Examples.Genuine.Runtime.csproj" />
-    <ProjectReference Include="AppsFlyer.csproj" />
     <ProjectReference Include="MoreMountains.NiceVibrations.Editor.csproj" />
     <ProjectReference Include="MoreMountains.NiceVibrations.Demos.csproj" />
     <ProjectReference Include="MoreMountains.NiceVibrations.Rumble.Editor.csproj" />
     <ProjectReference Include="spine-unity.csproj" />
     <ProjectReference Include="UniRx.csproj" />
-    <ProjectReference Include="AppsFlyer.Editor.csproj" />
     <ProjectReference Include="MaxSdk.Scripts.csproj" />
     <ProjectReference Include="MaxSdk.Scripts.IntegrationManager.Editor.csproj" />
     <ProjectReference Include="ACTk.Examples.Genuine.Editor.csproj" />

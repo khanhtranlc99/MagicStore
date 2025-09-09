@@ -365,8 +365,8 @@
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\crypto\generators\ElGamalKeyPairGenerator.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\asn1\BerOutputStream.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Utilities\Circle.cs" />
-    <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\PlatformSupport\IO\FileHelper.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\crypto\IAsymmetricBlockCipher.cs" />
+    <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\PlatformSupport\IO\FileHelper.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\asn1\ConstructedOctetStream.cs" />
     <Compile Include="Assets\Demigiant\Modules\DOTweenModuleEPOOutline.cs" />
     <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Controls\Old\TextPic.cs" />
@@ -598,8 +598,8 @@
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\math\ec\custom\sec\SecT571R1Point.cs" />
     <Compile Include="Assets\Demigiant\Modules\DOTweenModuleSprite.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\math\field\FiniteFields.cs" />
-    <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\ShaderEffects\UIMultiplyEffect.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\crypto\tls\TlsAuthentication.cs" />
+    <Compile Include="Assets\com.unity.uiextensions\Runtime\Scripts\Effects\ShaderEffects\UIMultiplyEffect.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\crypto\engines\ChaCha7539Engine.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\crypto\engines\HC128Engine.cs" />
     <Compile Include="Assets\Base\3Party\Best HTTP (Pro)\BestHTTP\SecureProtocol\math\ec\custom\sec\SecP128R1Curve.cs" />
@@ -1386,8 +1386,11 @@
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Effect\Standard\Camouflage.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Fading\Standard\Directional Alpha Fade.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-10.4.2_manifest.txt" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Common.dll" />
     <None Include="Assets\Base\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Alpha Tint.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.iOS.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Effect\Standard\Hologram.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Fading\Standard\Full Glow Dissolve.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -1396,12 +1399,14 @@
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle Multiply.shader" />
     <None Include="Assets\Base\3Party\NiceVibrations\OlderVersions\v2.0.1\NiceVibrations-v-2-0-1-readme.txt" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Add Color.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Brightness.shader" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIMultiply.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Serialization.dll" />
     <None Include="Assets\EnhancedScroller v2\Tutorials\readme.txt" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Add Hue.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Fading\Standard\Custom Fade.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.iOS.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Ink Spread.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Saturation.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Basic\Standard\Default.shader" />
@@ -1430,9 +1435,11 @@
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Outer Outline.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Fading\Standard\Full Alpha Dissolve.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Interactive\Standard\Wind.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Core.dll" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Serialization.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Basic\Standard\Additive.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\GoogleMobileAds\link.xml" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle MultiplyDouble.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Basic\Standard\Multiplicative.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
@@ -1448,10 +1455,12 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UI Particle Blend.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Base\3Party\NiceVibrations\OlderVersions\v1.7\NiceVibrations-v-1-7-readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Black Tint.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Sprite Shaders Ultimate\Demo\Shaders\DemoGUI.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\NoEditor\Sirenix.Utilities.dll" />
@@ -1465,6 +1474,7 @@
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Generated\Standard\Smoke.shader" />
     <None Include="Assets\Base\3Party\NiceVibrations\readme.txt" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\link.xml" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Effect\Standard\Glitch.shader" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UISoftAdditive.shader" />
     <None Include="Assets\Base\00_BaseCode\Scripts\Utility\CrystalFramework\Utility\Demos\SafeAreaDemo.txt" />
@@ -1483,6 +1493,7 @@
     <None Include="Assets\Base\3Party\Joker2X\FileHelpers.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Fading\Standard\Source Alpha Dissolve.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Sine Glow.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Android.dll" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Recolor.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Effect\Standard\Metal.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Split Toning.shader" />
@@ -1501,6 +1512,7 @@
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Shift Hue.shader" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Serialization.dll" />
     <None Include="Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Serialization.xml" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Android.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <None Include="Assets\com.unity.uiextensions\Runtime\Resources\Shaders\UIParticleHidden.shader" />
     <None Include="Assets\Sprite Shaders Ultimate\Shaders\Color\Standard\Inner Outline.shader" />
@@ -1966,12 +1978,20 @@
       <HintPath>Library\PackageCache\com.google.firebase.analytics@b00c59f9e7c1\Firebase\Plugins\Firebase.Analytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Common">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections@56bff8827a7e\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit@031a54704bff\net40\unity-custom\nunit.framework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.Serialization">
@@ -2002,6 +2022,10 @@
       <HintPath>Library\PackageCache\com.google.firebase.app@5dd41faa4871\Firebase\Plugins\Firebase.TaskExtension.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Core">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
       <Private>False</Private>
@@ -2010,12 +2034,24 @@
       <HintPath>Assets\Base\Plugins\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Ump.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@7dcdc439b230\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Firebase.Crashlytics">
       <HintPath>Library\PackageCache\com.google.firebase.crashlytics@8e5f4cedd0ec\Firebase\Plugins\Firebase.Crashlytics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
@@ -2880,18 +2916,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj" />
     <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj" />
     <ProjectReference Include="ACTk.Examples.Runtime.csproj" />
     <ProjectReference Include="ACTk.Runtime.csproj" />
     <ProjectReference Include="Coffee.UIParticle.csproj" />
     <ProjectReference Include="ACTk.Examples.Genuine.Runtime.csproj" />
-    <ProjectReference Include="AppsFlyer.csproj" />
     <ProjectReference Include="MoreMountains.NiceVibrations.Editor.csproj" />
     <ProjectReference Include="MoreMountains.NiceVibrations.Demos.csproj" />
     <ProjectReference Include="MoreMountains.NiceVibrations.Rumble.Editor.csproj" />
     <ProjectReference Include="spine-unity.csproj" />
     <ProjectReference Include="UniRx.csproj" />
-    <ProjectReference Include="AppsFlyer.Editor.csproj" />
     <ProjectReference Include="MaxSdk.Scripts.csproj" />
     <ProjectReference Include="MaxSdk.Scripts.IntegrationManager.Editor.csproj" />
     <ProjectReference Include="ACTk.Examples.Genuine.Editor.csproj" />
