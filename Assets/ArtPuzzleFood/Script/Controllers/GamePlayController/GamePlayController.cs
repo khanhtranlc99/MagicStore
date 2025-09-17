@@ -44,8 +44,8 @@ public class GamePlayController : Singleton<GamePlayController>
         });
       
         UseProfile.FirstLoading = true;
-       
 
+        GameController.Instance.AnalyticsController.StartLevel(UseProfile.LevelEggChest);
   
 
 

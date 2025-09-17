@@ -173,6 +173,7 @@ public class LevelData : MonoBehaviour
         anim.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         GamePlayController.Instance.gameScene.HandleShowButton();
+        AppsFlyerManager.Instance.SendEvent(AFEvents.AF_LEVEL_ACHIEVED, null);
     }
     [Button]
     private void FillIdGoats()

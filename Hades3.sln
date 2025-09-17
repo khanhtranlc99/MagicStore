@@ -33,11 +33,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoreMountains.NiceVibration
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleMobileAds.Editor", "GoogleMobileAds.Editor.csproj", "{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppsFlyer", "AppsFlyer.csproj", "{2336F878-AC83-3930-1E22-5D2F4BB299F3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACTk.Examples.Runtime", "ACTk.Examples.Runtime.csproj", "{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaxSdk.Scripts.IntegrationManager.Editor", "MaxSdk.Scripts.IntegrationManager.Editor.csproj", "{13A43767-B1B6-F7A0-8648-42E83876A4F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppsFlyer", "AppsFlyer.csproj", "{2336F878-AC83-3930-1E22-5D2F4BB299F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coffee.UIParticle.Editor", "Coffee.UIParticle.Editor.csproj", "{7FE9F134-58B8-76DA-2D3C-5DB2FECCCEED}"
 EndProject
@@ -121,6 +121,10 @@ Global
 		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64CA4B21-BE6E-6198-776A-E24BDA2AC25D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17F241CF-3F07-3A7B-62E5-A0F98336EDD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -129,10 +133,6 @@ Global
 		{13A43767-B1B6-F7A0-8648-42E83876A4F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13A43767-B1B6-F7A0-8648-42E83876A4F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13A43767-B1B6-F7A0-8648-42E83876A4F9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2336F878-AC83-3930-1E22-5D2F4BB299F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7FE9F134-58B8-76DA-2D3C-5DB2FECCCEED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7FE9F134-58B8-76DA-2D3C-5DB2FECCCEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FE9F134-58B8-76DA-2D3C-5DB2FECCCEED}.Release|Any CPU.ActiveCfg = Release|Any CPU

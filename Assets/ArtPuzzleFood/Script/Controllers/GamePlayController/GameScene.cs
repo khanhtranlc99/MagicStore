@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Math.Field;
 
 public class GameScene : BaseScene
 {
@@ -18,10 +19,11 @@ public class GameScene : BaseScene
     public Button btnRemoveAds;
     public BarPercent barPercent;
     public CanvasGroup canvasGroupMain;
-
+    public int count = 1;
 
     public void Init( LevelData param )
     {
+        nextBtn.onClick.AddListener(HandleButtonNext);
         nextBtn.gameObject.transform.localScale = Vector3.zero;
         nextBtn.gameObject.SetActive(false);
      
@@ -29,13 +31,13 @@ public class GameScene : BaseScene
         settinBtn.onClick.AddListener(HandleBtnSetting);
 
 
-        nextBtn.onClick.AddListener(HandleButtonNext);
+       
       
         barPercent.Init(param);
         homeBtn.onClick.AddListener(HandleButtonOnClick);
 
         btnRemoveAds.onClick.AddListener(ButtonRemoveAds);
-
+        count = 1;
 
     }
     public void ButtonRemoveAds()
@@ -60,28 +62,33 @@ public class GameScene : BaseScene
     }
     public void HandleButtonNext()
     {
-        GameController.Instance.musicManager.PlayClickSound();
-        GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "InterWinBox");
-        void Next()
+        if(count > 0)
         {
-            
-            var temp = JsonConvert.DeserializeObject<List<int>>(UseProfile.ListSave);
-           
-            if(temp == null)
+            count--;
+            GameController.Instance.musicManager.PlayClickSound();
+            GameController.Instance.admobAds.ShowInterstitial(false, actionIniterClose: () => { Next(); }, actionWatchLog: "InterWinBox");
+            void Next()
             {
-                var Newdata = new List<int>() { 1,2} ;
-                UseProfile.ListSave = JsonConvert.SerializeObject(Newdata);
-            }    
-            else
-            {
-                temp.Add(UseProfile.LevelEggChest+1);
-                UseProfile.ListSave = JsonConvert.SerializeObject(temp);
+
+                var temp = JsonConvert.DeserializeObject<List<int>>(UseProfile.ListSave);
+
+                if (temp == null)
+                {
+                    var Newdata = new List<int>() { 1, 2 };
+                    UseProfile.ListSave = JsonConvert.SerializeObject(Newdata);
+                }
+                else
+                {
+                    temp.Add(UseProfile.LevelEggChest + 1);
+                    UseProfile.ListSave = JsonConvert.SerializeObject(temp);
+                }
+                UseProfile.LevelEggChest += 1;
+                Initiate.Fade(SceneName.GAME_PLAY, Color.black, 2f);
             }
-            UseProfile.LevelEggChest += 1;
-            Initiate.Fade(SceneName.GAME_PLAY, Color.black, 2f);
+
         }
-   
-       
+
+
     }
     public IEnumerator WaitFadeCanvas( )
     {

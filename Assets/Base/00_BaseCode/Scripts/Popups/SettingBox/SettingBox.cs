@@ -83,6 +83,7 @@ public class SettingBox : BaseBox
         }    
     
         SetUpBtn();
+        GameController.Instance.admobAds.HandleShowMerec();
        
     }
 
@@ -226,6 +227,13 @@ public class SettingBox : BaseBox
     private void OnClickRestorePurchase()
     {
         GameController.Instance.iapController.RestorePurchases();
-    }    
+    }
+
+    public override void Close()
+    {
+        base.Close();
+
+        GameController.Instance.admobAds.HandleHideMerec();
+    }
 
 }

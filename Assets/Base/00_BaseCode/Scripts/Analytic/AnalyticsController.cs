@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 //using com.adjust.sdk;
 
 public class AnalyticsController : MonoBehaviour
@@ -468,11 +469,12 @@ public class AnalyticsController : MonoBehaviour
     private void OnApplicationQuit()
     {
         SetUserProperties();
-        UseProfile.WinStreak = 0;
+       
     }
     private void OnApplicationPause(bool pause)
     {
         SetUserProperties();
+       
     }
 
     public void HandleFireEvent_Total_Inter_Count()

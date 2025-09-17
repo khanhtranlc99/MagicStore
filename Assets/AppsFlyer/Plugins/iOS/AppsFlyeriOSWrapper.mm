@@ -6,7 +6,22 @@
 //
 
 #import "AppsFlyeriOSWrapper.h"
+#import <objc/runtime.h> 
 
+#import <StoreKit/StoreKit.h>
+#import "UnityFramework/UnityFramework-Swift.h"
+
+#if __has_include(<PurchaseConnector/PurchaseConnector-Swift.h>)
+#import <PurchaseConnector/PurchaseConnector-Swift.h>
+#elif __has_include("PurchaseConnector-Swift.h")
+#import "PurchaseConnector-Swift.h"
+#endif
+
+#if __has_include(<UnityFramework/UnityFramework-Swift.h>)
+#import <UnityFramework/UnityFramework-Swift.h>
+#elif __has_include("UnityFramework-Swift.h")
+#import "UnityFramework-Swift.h"
+#endif
 
 static void unityCallBack(NSString* objectName, const char* method, const char* msg) {
     if(objectName){
@@ -17,6 +32,9 @@ static void unityCallBack(NSString* objectName, const char* method, const char* 
 extern "C" {
  
     const void _startSDK(bool shouldCallback, const char* objectName) {
+        [[AppsFlyerLib shared] setPluginInfoWith: AFSDKPluginUnity
+                                pluginVersion:@"6.17.5"
+                                additionalParams:nil];
         startRequestObjectName = stringFromChar(objectName);
         AppsFlyeriOSWarpper.didCallStart = YES;
         [AppsFlyerAttribution shared].isBridgeReady = YES;
@@ -57,7 +75,7 @@ extern "C" {
     }
 
     const void _setDisableCollectAppleAdSupport (bool disableAdvertisingIdentifier) {
-        [AppsFlyerLib shared].disableAdvertisingIdentifier = disableAdvertisingIdentifier;
+       [AppsFlyerLib shared].disableAdvertisingIdentifier = disableAdvertisingIdentifier;
     }
 
     const void _setIsDebug (bool isDebug) {
@@ -72,8 +90,38 @@ extern "C" {
         [[AppsFlyerLib shared] setAppInviteOneLink:stringFromChar(appInviteOneLinkID)];
     }
 
+    const void _setDeepLinkTimeout (long  deepLinkTimeout) {
+        [AppsFlyerLib shared].deepLinkTimeout = deepLinkTimeout;
+    }
+
     const void _anonymizeUser (bool anonymizeUser) {
         [AppsFlyerLib shared].anonymizeUser = anonymizeUser;
+    }
+
+    const void _enableTCFDataCollection (bool shouldCollectTcfData) {
+       [[AppsFlyerLib shared] enableTCFDataCollection:shouldCollectTcfData];
+    }
+
+    const void _setConsentData(const char* isUserSubjectToGDPR, const char* hasConsentForDataUsage, const char* hasConsentForAdsPersonalization, const char* hasConsentForAdStorage) {
+    
+        NSNumber *gdpr = intFromNullableBool(isUserSubjectToGDPR);
+        NSNumber *dataUsage = intFromNullableBool(hasConsentForDataUsage);
+        NSNumber *adsPersonalization = intFromNullableBool(hasConsentForAdsPersonalization);
+        NSNumber *adStorage = intFromNullableBool(hasConsentForAdStorage);
+
+        AppsFlyerConsent *consentData = [[AppsFlyerConsent alloc] initWithIsUserSubjectToGDPR:gdpr
+                                                                       hasConsentForDataUsage:dataUsage
+                                                           hasConsentForAdsPersonalization:adsPersonalization
+                                                                   hasConsentForAdStorage:adStorage];
+
+        [[AppsFlyerLib shared] setConsentData:consentData];
+    }
+
+    const void _logAdRevenue(const char* monetizationNetwork, int mediationNetworkInt, const char* currencyIso4217Code, double eventRevenue, const char* additionalParameters) {
+        AppsFlyerAdRevenueMediationNetworkType mediationNetwork = mediationNetworkTypeFromInt(mediationNetworkInt);
+        NSNumber *number = [NSNumber numberWithDouble:eventRevenue];
+        AFAdRevenueData *adRevenue = [[AFAdRevenueData alloc] initWithMonetizationNetwork:stringFromChar(monetizationNetwork) mediationNetwork:mediationNetwork currencyIso4217Code:stringFromChar(currencyIso4217Code) eventRevenue:number];
+        [[AppsFlyerLib shared] logAdRevenue: adRevenue additionalParameters:dictionaryFromJson(additionalParameters)];
     }
 
     const void _setDisableCollectIAd (bool disableCollectASA) {
@@ -218,7 +266,7 @@ extern "C" {
         }
     }
     
-    const void _validateAndSendInAppPurchase (const char* productIdentifier, const char* price, const char* currency, const char* tranactionId, const char* additionalParameters, const char* objectName) {
+    const void _validateAndSendInAppPurchase (const char* productIdentifier, const char* price, const char* currency, const char* transactionId, const char* additionalParameters, const char* objectName) {
 
         validateObjectName = stringFromChar(objectName);
 
@@ -226,7 +274,7 @@ extern "C" {
          validateAndLogInAppPurchase:stringFromChar(productIdentifier)
          price:stringFromChar(price)
          currency:stringFromChar(currency)
-         transactionId:stringFromChar(tranactionId)
+         transactionId:stringFromChar(transactionId)
          additionalParameters:dictionaryFromJson(additionalParameters)
          success:^(NSDictionary *result){
                  unityCallBack(validateObjectName, VALIDATE_CALLBACK, stringFromdictionary(result));
@@ -239,6 +287,43 @@ extern "C" {
              }
          }];
     }
+
+    const void _validateAndSendInAppPurchaseV2 (const char* product, const char* transactionId, int purchaseType, const char* purchaseAdditionalDetails, const char* objectName) {
+
+        validateAndLogObjectName = stringFromChar(objectName);
+        AFSDKPurchaseDetails *details = [[AFSDKPurchaseDetails alloc] initWithProductId:stringFromChar(product) transactionId:stringFromChar(transactionId) purchaseType:(AFSDKPurchaseType)purchaseType];
+
+        [[AppsFlyerLib shared]
+         validateAndLogInAppPurchase:details
+         purchaseAdditionalDetails:dictionaryFromJson(purchaseAdditionalDetails)
+         completion:^(NSDictionary * _Nullable response, NSError * _Nullable error) {
+            if (error) {
+                unityCallBack(validateAndLogObjectName, VALIDATE_AND_LOG_V2_ERROR_CALLBACK, stringFromdictionary(dictionaryFromNSError(error)));
+            } else {
+                // Check if the response indicates validation failure
+                BOOL isValidationFailure = NO;
+                if (response && [response isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *resultDict = response[@"result"];
+                    if (resultDict && [resultDict isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *responseForProduct = resultDict.allValues.firstObject;
+                        if (responseForProduct && [responseForProduct isKindOfClass:[NSDictionary class]]) {
+                            BOOL validationResult = [responseForProduct[@"result"] boolValue];
+                            if (!validationResult) {
+                                isValidationFailure = YES;
+                            }
+                        }
+                    }
+                }
+                
+                if (isValidationFailure) {
+                    unityCallBack(validateAndLogObjectName, VALIDATE_AND_LOG_V2_ERROR_CALLBACK, stringFromdictionary(response));
+                } else {
+                    unityCallBack(validateAndLogObjectName, VALIDATE_AND_LOG_V2_CALLBACK, stringFromdictionary(response));
+                }
+            }
+        }];
+         
+    }
     
     const void _getConversionData(const char* objectName) {
         if (_AppsFlyerdelegate == nil) {
@@ -249,7 +334,7 @@ extern "C" {
     }
 
     const void _waitForATTUserAuthorizationWithTimeoutInterval (int timeoutInterval) {
-        [[AppsFlyerLib shared] waitForATTUserAuthorizationWithTimeoutInterval:timeoutInterval];
+       [[AppsFlyerLib shared] waitForATTUserAuthorizationWithTimeoutInterval:timeoutInterval];
     }
 
     const void _disableSKAdNetwork (bool isDisabled) {
@@ -275,6 +360,106 @@ extern "C" {
     const void _setCurrentDeviceLanguage(const char* language) {
         [[AppsFlyerLib shared] setCurrentDeviceLanguage:stringFromChar(language)];
     }
+
+    const void _setPartnerData(const char* partnerId, const char* partnerInfo) {
+        [[AppsFlyerLib shared] setPartnerDataWithPartnerId: stringFromChar(partnerId) partnerInfo:dictionaryFromJson(partnerInfo)];
+    }
+
+    const void _disableIDFVCollection(bool isDisabled) {
+        [AppsFlyerLib shared].disableIDFVCollection = isDisabled;
+    }
+
+    // Purchase connector
+    const void _startObservingTransactions() {
+        [[PurchaseConnector shared] startObservingTransactions];
+    }
+
+    const void _stopObservingTransactions() {
+        [[PurchaseConnector shared] stopObservingTransactions];
+    }
+
+    const void _setIsSandbox(bool isSandBox) {
+        [[PurchaseConnector shared] setIsSandbox:isSandBox];
+    }
+
+    const void _setPurchaseRevenueDelegate() {
+        if (_AppsFlyerdelegate== nil) {
+            _AppsFlyerdelegate = [[AppsFlyeriOSWarpper alloc] init];
+               }
+        [[PurchaseConnector shared] setPurchaseRevenueDelegate:_AppsFlyerdelegate];
+    }
+
+    const void _setAutoLogPurchaseRevenue(int option) {
+           [[PurchaseConnector shared] setAutoLogPurchaseRevenue:option];
+
+    }
+
+    const void _initPurchaseConnector(const char* objectName) {
+        if (_AppsFlyerdelegate == nil) {
+            _AppsFlyerdelegate = [[AppsFlyeriOSWarpper alloc] init];
+        }
+        onPurchaseValidationObjectName = stringFromChar(objectName);
+    }
+
+    const void _setPurchaseRevenueDataSource(const char* objectName) {
+        if (_AppsFlyerdelegate == nil) {
+            _AppsFlyerdelegate = [[AppsFlyeriOSWarpper alloc] init];
+        }
+
+        if (strstr(objectName, "StoreKit2") != NULL) {
+            
+            // Force protocol conformance
+            Protocol *sk2Protocol = @protocol(AppsFlyerPurchaseRevenueDataSourceStoreKit2);
+            class_addProtocol([_AppsFlyerdelegate class], sk2Protocol);
+            
+            if (![_AppsFlyerdelegate conformsToProtocol:@protocol(AppsFlyerPurchaseRevenueDataSourceStoreKit2)]) {
+                NSLog(@"[AppsFlyer] Warning: SK2 protocol not conformed!");
+            }
+        }
+        
+        [PurchaseConnector shared].purchaseRevenueDataSource = _AppsFlyerdelegate;
+    }
+
+    const void _setStoreKitVersion(int storeKitVersion) {
+        [[PurchaseConnector shared] setStoreKitVersion:(AFSDKStoreKitVersion)storeKitVersion];
+    }
+
+    const void _logConsumableTransaction(const char* transactionId) {
+        if (@available(iOS 15.0, *)) {
+            NSString *transactionIdStr = [NSString stringWithUTF8String:transactionId];
+            [AFUnityStoreKit2Bridge fetchAFSDKTransactionSK2WithTransactionId:transactionIdStr completion:^(AFSDKTransactionSK2 *afTransaction) {
+                if (afTransaction) {
+                    [[PurchaseConnector shared] logConsumableTransaction:afTransaction];
+                } else {
+                    NSLog(@"No AFSDKTransactionSK2 found for id %@", transactionIdStr);
+                }
+            }];
+        }
+    }
+
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+
+    typedef const char *(*UnityPurchaseCallback)(const char *, const char *);
+
+    UnityPurchaseCallback UnityPurchasesGetAdditionalParamsCallback = NULL;
+    UnityPurchaseCallback UnityPurchasesGetAdditionalParamsCallbackSK2 = NULL;
+
+    __attribute__((visibility("default")))
+    void RegisterUnityPurchaseRevenueParamsCallback(UnityPurchaseCallback callback) {
+        UnityPurchasesGetAdditionalParamsCallback = callback;
+    }
+
+    __attribute__((visibility("default")))
+    void RegisterUnityPurchaseRevenueParamsCallbackSK2(UnityPurchaseCallback callback) {
+        UnityPurchasesGetAdditionalParamsCallbackSK2 = callback;
+    }
+
+
+    #ifdef __cplusplus
+    }
+    #endif
 }
 
 @implementation AppsFlyeriOSWarpper
@@ -316,5 +501,120 @@ static BOOL didCallStart;
     unityCallBack(onDeeplinkingObjectName, ON_DEEPLINKING, stringFromdictionary(dict));
 }
 
+// Purchase Connector
+- (void)didReceivePurchaseRevenueValidationInfo:(NSDictionary *)validationInfo error:(NSError *)error {
+    if (error != nil) {
+        unityCallBack(onPurchaseValidationObjectName, PURCHASE_REVENUE_ERROR_CALLBACK, [[error localizedDescription] UTF8String]);
+    } else {
+        unityCallBack(onPurchaseValidationObjectName, PURCHASE_REVENUE_VALIDATION_CALLBACK, stringFromdictionary(validationInfo));
+    }
+}
+
+- (NSDictionary *)purchaseRevenueAdditionalParametersForProducts:(NSSet<SKProduct *> *)products
+                                                     transactions:(NSSet<SKPaymentTransaction *> *)transactions {
+
+    NSMutableArray *productsArray = [NSMutableArray array];
+    for (SKProduct *product in products) {
+        [productsArray addObject:@{
+            @"productIdentifier": product.productIdentifier ?: @"",
+            @"localizedTitle": product.localizedTitle ?: @"",
+            @"localizedDescription": product.localizedDescription ?: @"",
+            @"price": [product.price stringValue] ?: @""
+        }];
+    }
+
+    NSMutableArray *transactionsArray = [NSMutableArray array];
+    for (SKPaymentTransaction *txn in transactions) {
+        [transactionsArray addObject:@{
+            @"transactionIdentifier": txn.transactionIdentifier ?: @"",
+            @"transactionState": @(txn.transactionState),
+            @"transactionDate": txn.transactionDate ? [@(txn.transactionDate.timeIntervalSince1970) stringValue] : @""
+        }];
+    }
+
+    NSDictionary *input = @{
+        @"products": productsArray,
+        @"transactions": transactionsArray
+    };
+
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:input options:0 error:&error];
+    if (error || !jsonData) {
+        NSLog(@"[AppsFlyer] Failed to serialize Unity purchase data: %@", error);
+        return @{};
+    }
+
+    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    if (!jsonString || !UnityPurchasesGetAdditionalParamsCallback) {
+        NSLog(@"[AppsFlyer] Unity callback not registered");
+        return @{};
+    }
+
+    const char *resultCStr = UnityPurchasesGetAdditionalParamsCallback([jsonString UTF8String], "");
+    if (!resultCStr) {
+        NSLog(@"[AppsFlyer] Unity callback returned null");
+        return @{};
+    }
+
+    NSString *resultJson = [NSString stringWithUTF8String:resultCStr];
+    NSData *resultData = [resultJson dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *parsedResult = [NSJSONSerialization JSONObjectWithData:resultData options:0 error:&error];
+
+    if (error || ![parsedResult isKindOfClass:[NSDictionary class]]) {
+        NSLog(@"[AppsFlyer] Failed to parse Unity response: %@", error);
+        return @{};
+    }
+
+    return parsedResult;
+}
+
+#pragma mark - AppsFlyerPurchaseRevenueDataSourceStoreKit2
+- (NSDictionary *)purchaseRevenueAdditionalParametersStoreKit2ForProducts:(NSSet<AFSDKProductSK2 *> *)products transactions:(NSSet<AFSDKTransactionSK2 *> *)transactions {
+    if (@available(iOS 15.0, *)) {
+        NSArray *productInfoArray = [AFUnityStoreKit2Bridge extractSK2ProductInfo:[products allObjects]];
+        NSArray *transactionInfoArray = [AFUnityStoreKit2Bridge extractSK2TransactionInfo:[transactions allObjects]];
+
+        NSDictionary *input = @{
+            @"products": productInfoArray,
+            @"transactions": transactionInfoArray
+        };
+
+        if (UnityPurchasesGetAdditionalParamsCallbackSK2) {
+            NSError *error = nil;
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:input options:0 error:&error];
+            if (error || !jsonData) {
+                NSLog(@"[AppsFlyer] Failed to serialize Unity purchase data: %@", error);
+                return @{};
+            }
+
+            NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
+            const char *resultCStr = UnityPurchasesGetAdditionalParamsCallbackSK2([jsonString UTF8String], "");
+            if (!resultCStr) {
+                NSLog(@"[AppsFlyer] Unity callback returned null");
+                return @{};
+            }
+
+            NSString *resultJson = [NSString stringWithUTF8String:resultCStr];
+            
+            NSData *resultData = [resultJson dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *parsedResult = [NSJSONSerialization JSONObjectWithData:resultData options:0 error:&error];
+
+            if (error || ![parsedResult isKindOfClass:[NSDictionary class]]) {
+                NSLog(@"[AppsFlyer] Failed to parse Unity response: %@", error);
+                return @{};
+            }
+
+            return parsedResult;
+        } else {
+            NSLog(@"[AppsFlyer] SK2 - Unity callback is NOT registered");
+        }
+    } else {
+        NSLog(@"[AppsFlyer] SK2 - iOS version not supported");
+    }
+    return @{};
+}
+
 @end
+
 
